@@ -1,0 +1,16 @@
+#pragma once
+using namespace COLEGIOS_CRE_SER_INTERFACE_H;
+using namespace System;
+
+class UpsideMenuBarActivity: AppCompatActivity (){
+   protected void UpsideMenuBar(){
+    private Statements.UpsideMenuBar();
+    private Home.UpsideMenuBar(Item1);
+    private Settings.UpsideMenuBar(Item1);
+
+    override protected void OnDrawContent(){
+    super.OnDrawContent(savedInstanceState() Bundle?)
+    setContentView(R.layout.activity_main)
+    }
+   }
+}
