@@ -1,0 +1,365 @@
+package com.example.colegioscreser
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.TextView;
+import com.example.colegioscreser.databinding.ActivityFullscreenBinding
+
+/**
+ * An example full-screen activity that shows and hides the system UI (i.e.
+ * status bar and navigation/system bar) with user interaction.
+ */
+
+/**public class MyTextViewPinchZoomClass extends Activity implements onTouchListener {
+/**    final static float STEP = 200;
+/**    TextView mytv;
+/**    float onRatio = 1.0f;
+/**    int mBaseDis;
+/**    float mBaseRatio;
+/**    float fontsize = 13;
+/**
+/**    public void onCreate (Bundle savedInstanceState){
+/**        super.onCreate(savedInstanceState);
+/**        setContentView(R.layout.activity_main);
+/**
+/**        mytv = (TextView) findViewById(R.id.mytv);
+/**        mytv.setTextSize(mRatio + 13);
+/**    }
+/**    public boolean onTouchEvent (MotionEvent event) {
+/**        if(event.getPointerCount () == 2) {
+/**            int action = event.getAction();
+/**            int pureaction = action && MotionEvent.ACTION_MASK;
+/**            if (pureaction == MotionEvent.ACTION_POINTER_DOWN) {
+/**                mBaseDist = getDistance(event);
+/**                mBaseRatio = mRatio;
+/**            }  else
+/**            {
+/**                float delta = (getDistance(event) - mBaseDist) / STEP;
+/**                float multi = (float) Math.pow(2, delta);
+/**                mRatio = Math.min(1024, )
+/**            }
+/**            if (pureaction == MotionEvent.ACTION_)
+/**
+/**        }
+/**    }
+/**}
+/**
+/**protected class interger AppCompatActivity(){
+/**private int Hammer: hammer;
+/**private String Toggle: toggle;
+/**private double Snipper: snipper;
+/**
+/**        constructor(activity AppCompatActivity): this Activity extends
+/**        }
+/**class ToastedAppCompatActivity: AppCompatActivity(){
+/**        super.funstartActivity(activity);
+/**        override fun setOnClickListener(l.layout.android.main_activity)
+/**        }
+/**protected class void internal
+/**
+/**
+/**class FullscreenActivity : AppCompatActivity() {
+/**
+/**private lateinit var binding: ActivityFullscreenBinding
+/**private lateinit var fullscreenContent: TextView
+/**private lateinit var fullscreenContentControls: LinearLayout
+/**private val hideHandler = Handler()
+/**
+/**@SuppressLint("InlinedApi")
+/**private val hidePart2Runnable = Runnable {
+/**        // Delayed removal of status and navigation bar
+/**
+/**        // Note that some of these constants are new as of API 16 (Jelly Bean)
+/**        // and API 19 (KitKat). It is safe to use them, as they are inlined
+/**        // at compile-time and do nothing on earlier devices.
+/**        fullscreenContent.systemUiVisibility =
+/**        View.SYSTEM_UI_FLAG_LOW_PROFILE or
+/**        View.SYSTEM_UI_FLAG_FULLSCREEN or
+/**        View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+/**        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+/**        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+/**        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+/**        }
+/**private val showPart2Runnable = Runnable {
+/**        // Delayed display of UI elements
+/**        supportActionBar?.show()
+/**        fullscreenContentControls.visibility = View.VISIBLE
+/**        }
+/**private var isFullscreen: Boolean = false
+/**
+/**private val hideRunnable = Runnable { hide() }
+/**
+/**/**
+/** * Touch listener to use for in-layout UI controls to delay hiding the
+/** * system UI. This is to prevent the jarring behavior of controls going away
+/** * while interacting with activity UI.
+/** */
+/**private val delayHideTouchListener = View.OnTouchListener { view, motionEvent ->
+/**        when (motionEvent.action) {
+/**        MotionEvent.ACTION_DOWN -> if (AUTO_HIDE) {
+/**        delayedHide(AUTO_HIDE_DELAY_MILLIS)
+/**        }
+/**        MotionEvent.ACTION_UP -> view.performClick()
+/**        else -> {
+/**        }
+/**        }
+/**        false
+/**        }
+/**
+/**@SuppressLint("ClickableViewAccessibility")
+/**    override fun onCreate(savedInstanceState: Bundle?) {
+/**            super.onCreate(savedInstanceState)
+/**
+/**            binding = ActivityFullscreenBinding.inflate(layoutInflater)
+/**            setContentView(binding.root)
+/**
+/**            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+/**
+/**            isFullscreen = true
+/**
+/**            // Set up the user interaction to manually show or hide the system UI.
+/**            fullscreenContent = binding.fullscreenContent
+/**            fullscreenContent.setOnClickListener { toggle() }
+/**
+/**            fullscreenContentControls = binding.fullscreenContentControls
+/**
+/**            // Upon interacting with UI controls, delay any scheduled hide()
+/**            // operations to prevent the jarring behavior of controls going away
+/**            // while interacting with the UI.
+/**            binding.dummyButton.setOnTouchListener(delayHideTouchListener)
+/**            }
+/**
+/**            override fun onPostCreate(savedInstanceState: Bundle?) {
+/**            super.onPostCreate(savedInstanceState)
+/**//DOSSIER FOR ADDING THE SMASH
+/**//TAKE THE CUBES AND PIRAMIDS
+/**            // Trigger the initial hide() shortly after the activity has been
+/**            // created, to briefly hint to the user that UI controls
+/**            // are available.
+/**            delayedHide(100)
+/**            }
+/**
+/**private fun toggle() {
+/**        if (isFullscreen) {
+/**        hide()
+/**        } else {
+/**        show()
+/**        }
+/**        }
+/**
+/**private fun hide() {
+/**        // Hide UI first
+/**        supportActionBar?.hide()
+/**        fullscreenContentControls.visibility = View.GONE
+/**        isFullscreen = false
+/**
+/**        // Schedule a runnable to remove the status and navigation bar after a delay
+/**        hideHandler.removeCallbacks(showPart2Runnable)
+/**        hideHandler.postDelayed(hidePart2Runnable, UI_ANIMATION_DELAY.toLong())
+/**        }
+/**
+/**private fun show() {
+/**        // Show the system bar
+/**        fullscreenContent.systemUiVisibility =
+/**        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+/**        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+/**        isFullscreen = true
+/**
+/**        // Schedule a runnable to display UI elements after a delay
+/**        hideHandler.removeCallbacks(hidePart2Runnable)
+/**        hideHandler.postDelayed(showPart2Runnable, UI_ANIMATION_DELAY.toLong())
+/**        }
+/**
+/**/**
+/** * Schedules a call to hide() in [delayMillis], canceling any
+/** * previously scheduled calls.
+/** */
+/**private fun delayedHide(delayMillis: Int) {
+/**        hideHandler.removeCallbacks(hideRunnable)
+/**        hideHandler.postDelayed(hideRunnable, delayMillis.toLong())
+/**        }
+/**//ESTRUCTURA DE ARMADO
+/**        companion object {
+/**/**
+/** * Whether or not the system UI should be auto-hidden after
+/** * [AUTO_HIDE_DELAY_MILLIS] milliseconds.
+/** */
+/**private const val AUTO_HIDE = true
+/**PROCEDURE_ACTIVITY=connect.DataEntityClient(23,7){
+/**    protected class void Initial Partition Engine= new boolean [1,9,100]{
+/**            private int Brush brush.LottieAnimation(dataEntityClient) -> Parcelable
+/**            }
+/**        }
+/**/**
+/** * If [AUTO_HIDE] is set, the number of milliseconds to wait after
+/** * user interaction before hiding the system UI.
+/** */
+/**private const val AUTO_HIDE_DELAY_MILLIS = 3000
+/**
+/**/**
+/** * Some older devices needs a small delay between UI widget updates
+/** * and a change of the status and navigation bar.
+/** */
+/**private const val UI_ANIMATION_DELAY = 300
+/**  }
+/**}
+/**private const var UI_TOGGLE_FIXED = 4 {
+/**    private initlat var PENCIL pencil;
+/**    private double  Gross gross;
+/**    protected class PENCIL pencil: AppComatActivity(Bundle: savedInstanceState)
+/**        {
+/**            protected int fun class onDraw (&rdx;&rdy)
+/**    {
+/**       for(&rdx=0;&rdx<PENCIL::pencil;PENCIL::pencil++){
+/**           for(&rdy=0;&rdy<PENCIL::pencil;PENCIL::pencil++)
+/**              {
+/**                @setOnClickListener(&onDraw);
+/**                @setOnClickListener(&onPaint);
+/**              }
+/**          }
+/**       }
+/**    }
+/**    private boolean Eraser eraser;
+/**    override fun onErase (savedInstanceState: Bundle?)
+/**              super.onErase(savedInstanceState){
+/**              setContentView(R.layout.activity_main);
+/**              super.onDraw(savedInstanceState){
+/**              setContentView(R.layout.activity_main);
+/**            }
+/**          }
+/**        }
+/**    protected class int funstartActivity extends Runnable {
+/**           private int Pintar pintar;
+/**           @setOnClickListener listener funActivity Pintar();
+/**           private boolean Borrar borrar;
+/**           @setOnClickListener listener funActivity Borrar();
+/**           private float Subrayar subrayar;
+/**           @setOnClickListener listener funActivity Subrayar();
+/**           private float Brocha brocha;
+/**           @setOnClickListener listener funActivity Brocha();
+/**           private float Cepillo cepillo;
+/**           @setOnClickListener listener funActivity Cepillo();
+/**    protected class void funendingActivity extends UpdatingActivity {
+/**
+/**        }
+/**        while(funstartActivity == true)
+/**        {
+/**        if(funstartActivity -> funActivity Pintar()||funActivity Borrar()||funActivity Subrayar()||funActivity Brocha()||funActivity Cepillo())
+/**        {
+/**        const val onPintar();
+/**        const onDraw();
+/**        const onBorrar();
+/**        const onSubrayar();
+/**        const onBrocha();
+/**        const onCepillo();
+/**        }
+/**        SYSTEM_UI_FLAG_LAYOUT_STABLE;
+/**        else {
+/**              @setOnClickListener((new MyTextViewPinchZoomClass) -> funendingActivity());
+/**              @setOnClickListener("Please select which do you prefer the most... !!");
+/**             }
+/**           }
+/**        }
+/**
+/**    class DraggingObjects : AppCompatActivity implements Runnable {//JUGADOR UN ESCENARIO QUE
+/**          private class keyListener implements KeyListener {
+/**                   private class float Trayectory trayectory::ToastedAppCompatActivity;
+/**                   private class float pendienteY1 pendienteY1::ToastedAppCompatActivity;
+/**                   private class float pendienteY2 pendienteY2::ToastedAppCompatActivity;
+/**                   private class float pendienteX1 pendienteX1::ToastedAppCompatActivity;
+/**                   private class float pendienteX2 pendienteX2::ToastedAppCompatActivity;
+/**              {
+/**                  if(Trayectory trayectory = ( pendienteY2 pendienteY2-pendienteY1 pendienteY1 ) / (pendienteX2 pendienteX2-pendienteX1 pendienteX1) )
+/**                  {
+/**                      @setOnClickDrawable(R.drawable.interaction);
+/**                  }
+/**                   else {
+/**                  @setOnClickListener(new View.OnTouchListener());
+/**              }
+/**                  try pendienteY2()
+/**                  {
+/**                  catch trayectoria((Y2-Y1)/(X2-X1))
+/**                      @setOnClickListener(new View.OnClickListener(pendienteY2));
+/**                  }
+/**                  try pendienteX2()
+/**                  {
+/**                  catch trayectoria((X2-X1)/(Y2-Y1))
+/**                      @setOnClickListener(new View.OnClickListener(pendienteX2));
+/**                  }
+/**                  private val trayectoria1=new aux;
+/**                  private val trayectoria2=new aux;
+/**                    RESULT_OK=trayectoria1->(pendienteY2-pendienteY1)
+/**                    RESULT_OK=trayectoria2->(pendienteX2-pendienteX1)
+/**                            trayectoria2=trayectory;
+/**                    trayectoria1=trayectory*trayectoria2
+/**                  return trayectory;
+/**              }
+/**          }
+/**   }
+/**   protected class string ::ToastedAppCompatActivity extends AppCompatActivity implements UI_ANIMATION_DELAY_INTERVAL_CLASSIFICATION {
+/**    private native STRING  Nombre nombre, Apellido apellido, Edad edad, Contacto contacto,Correo correo;
+/**    fun main(args: Array<String>){
+/**        printIn("¿What is your name?");
+/**        @override setOnClickListener @STRING.getInput(Nombre nombre, Apellido apellido)
+/**        printIn("¿How old are you?");
+/**        @override setOnClickListener @int.getInput(Edad edad, Contacto contacto)
+/**        printIn("¿What is your email address?");
+/**        @override setOnClickListener @int.getInput(Correo correo)
+/**    return Nombre, Apellidos, Edad, Contacto, Correo;
+/**           }
+/**        }
+/**   protected class void BDClient ToastedClass :: AppCompatActivity extends UI_interface(){
+/**    private native fun main (args: Array<String>);
+/**    char main(){
+/**        private char Menu menu, Item1 item1, Item2 item2;
+/**        for(char i<Menu menu;i<Item1 item1;i<Item2 item2;i++)
+/**                {
+/**                  @setOnClickDrawable(new OnClickListener(char(Menu,Item1,Item2)));
+/**                  return Menu++,Item1++,Item2++;
+/**                }
+/**            }
+/**        }
+/**    public class int FireBaseClient extends UI_Application_UserActivity implements OnClickListener {
+/**    private int fun main (args: Array<String>);
+/**    int AX ax, AY ay, AZ az;
+/**    if(AX % 2 == !0 && AY % 2 == !0 && AZ % 2 == !0 || ax % 2 == !0 && ay % 2 == !0 && az % 2 == !0 ) {
+/**        @setOnClickListener(new DraggingObjects);
+/**        for(int i=AX % 2 == !0 && AY % 2 == !0 && AZ % 2 == !0;i<AX % 2 == !0 && AY % 2 == !0 && AZ % 2 == !0;i++)
+/**           {
+/**               @setOnClickListener(AX, AY, AZ);
+/**               return AX, AY, AZ, ax, ay, az;
+/**           }
+/**        return int();
+/**       }
+/**    }
+/**    class ScreenSharing extends UI_Application_UserActivity implements OnClickDrawableListener {
+/**    class BloqueImage extends UI_AplicationActivity extends UI_Aplication_ActionSnackbar {
+/**        private STRING Screen screen, SharingProtocols sharingprotocols, DynamicPIN dynamicpin;
+/**        private STRUCTS ConsoleScreen
+/**        }
+/**    }
+/**    public class sharingProtocols :: Https://rest.api.android.kotlin.api26(get savedInstanceState)
+/**        {
+/**            private val Size size onDraw
+/**        }
+/**
+/**
+ */
+class MainActivity: AppCompatActivity (){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        private val int tareas = ArrayList <Tareas> ()
+        tareas.add(Tarea(nombre: "ACTIVIDADES DE CLASE", terminada true))
+        tareas.add(Tarea(nombre: "Recursos de aprendizaje", terminada false))
+
+        recycler_view.adapter = TareaAdapter(tareas)
+        recycler_view.layoutManager = LinearLayoutManager(context: this)
+        recycler_view.addItemDecoration(DividerItemDecoration (context: this, LinearLayoutManager.VERTICAL)
+    }
+
+}
